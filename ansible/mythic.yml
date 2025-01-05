@@ -28,7 +28,9 @@
     - name: Install Mythic Agents and Profiles (Default)
       shell: |
         cd /opt/Mythic
-        sudo ./mythic-cli install github https://github.com/MythicAgents/apfell
+        sudo ./mythic-cli install github https://github.com/MythicAgents/Apollo.git
+        sudo ./mythic-cli install github https://github.com/MythicAgents/bloodhound.git
+        sudo ./mythic-cli install github https://github.com/MythicAgents/poseidon.git
         sudo ./mythic-cli install github https://github.com/MythicC2Profiles/http
 
 
