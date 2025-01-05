@@ -44,7 +44,6 @@ check_error "Extracting IP"
 echo "[mythic]" > "../$INVENTORY_FILE"
 echo "$PUBLIC_IP ansible_user=ubuntu ansible_ssh_private_key_file=$SSH_KEY_PATH" >> "../$INVENTORY_FILE"
 check_error "Writing inventory file"
-echo "$PUBLIC_IP" > ansible/.ip
 echo "Inventory file created successfully!"
 
 # Exit script
