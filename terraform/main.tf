@@ -5,7 +5,7 @@ provider "aws" {
 # Create a Key Pair
 resource "aws_key_pair" "my_key" {
   key_name   = "mythic-key"
-  public_key = file(".ssh/id_rsa.pub") #Create a id_rsa keypair in the .ssh folder
+  public_key = file("../.ssh/id_rsa.pub") #Create a id_rsa keypair in the .ssh folder
 }
 
 # Create a Security Group

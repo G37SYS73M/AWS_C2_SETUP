@@ -2,9 +2,9 @@
 
 # Set variables
 TERRAFORM_DIR="terraform" # Path to the directory containing Terraform files
-ANSIBLE_PLAYBOOK="mythic.yml" # Path to the Ansible playbook
-INVENTORY_FILE="inventory.ini" # Path to the Ansible inventory file
-SSH_KEY_PATH="$HOME/.ssh/id_rsa"
+ANSIBLE_PLAYBOOK="ansible/mythic.yml" # Path to the Ansible playbook
+INVENTORY_FILE="ansible/inventory.ini" # Path to the Ansible inventory file
+SSH_KEY_PATH=".ssh/id_rsa"
 
 # Function to check for errors
 check_error() {
@@ -42,7 +42,7 @@ PUBLIC_IP=$(terraform output -raw mythic_instance_public_ip)
 check_error "Extracting IP"
 
 echo "[mythic]" > "../$INVENTORY_FILE"
-echo "$PUBLIC_IP ansible_user=ubuntu ansible_ssh_private_key_file=$SSH_KEY_PATH" >> "../$INVENTORY_FILE"
+echo "$PUBLIC_IP ansible_user=ubuntu ansible_ssh_private_key_file=../$SSH_KEY_PATH" >> "../$INVENTORY_FILE"
 check_error "Writing inventory file"
 
 echo "Inventory file created successfully!"
