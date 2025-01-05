@@ -8,6 +8,7 @@ terraform.tfvars.json
 *.log
 crash.log
 *.tfplan
+.hcl
 
 # Ansible files
 *.retry
@@ -20,6 +21,7 @@ group_vars/
 *.key
 *.pub
 *.private
+id_rsa
 
 # Logs and temporary files
 *.log
