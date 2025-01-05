@@ -1,11 +1,11 @@
 provider "aws" {
-  region = "us-east-1" # Replace with your preferred region
+  region = "ap-south-1" # Replace with your preferred region
 }
 
 # Create a Key Pair
 resource "aws_key_pair" "my_key" {
   key_name   = "mythic-key"
-  public_key = file("../.ssh/id_rsa.pub") #Create a id_rsa keypair in the .ssh folder
+  public_key = file("../.ssh/id_rsa.pub")
 }
 
 # Create a Security Group
@@ -44,8 +44,8 @@ resource "aws_security_group" "mythic_sg" {
 
 # Create an EC2 Instance
 resource "aws_instance" "mythic_instance" {
-  ami           = "ami-0c02fb55956c7d316" # Amazon Linux 2 AMI (replace with your region-specific AMI)
-  instance_type = "t2.medium"
+  ami           = "ami-053b12d3152c0cc71" #replace with your region-specific AMI
+  instance_type = "t2.large"
   key_name      = aws_key_pair.my_key.key_name
   security_groups = [aws_security_group.mythic_sg.name]
 
