@@ -1,0 +1,43 @@
+# Terraform files
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+terraform.tfvars.json
+*.backup
+*.log
+crash.log
+*.tfplan
+
+# Ansible files
+*.retry
+inventory.ini
+host_vars/
+group_vars/
+
+# SSH keys
+*.pem
+*.key
+*.pub
+*.private
+
+# Logs and temporary files
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+*.~undo-tree~
+
+# Python virtual environments (if used)
+.env/
+venv/
+__pycache__/
+
+# System files
+Thumbs.db
+.DS_Store
+
+# Git-specific
+.git/

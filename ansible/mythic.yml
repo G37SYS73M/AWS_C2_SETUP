@@ -1,0 +1,30 @@
+---
+- hosts: mythic
+  become: yes
+  tasks:
+    - name: Update and install prerequisites
+      apt:
+        update_cache: yes
+        name:
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Add the current user to the Docker group
+      command: usermod -aG docker ubuntu
+
+    - name: Clone the Mythic repository
+      git:
+        repo: https://github.com/its-a-feature/Mythic.git
+        dest: /opt/mythic
+        version: master
+
+    - name: Install Mythic
+      shell: |
+        cd /opt/mythic
+        ./install_docker_ubuntu.sh
+
+    - name: Start Mythic services
+      shell: |
+        cd /opt/mythic
+        ./mythic-cli start
