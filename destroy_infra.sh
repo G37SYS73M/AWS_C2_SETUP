@@ -7,6 +7,7 @@ export LC_ALL=en_US.UTF-8
 TERRAFORM_DIR="terraform"    # Path to the Terraform directory
 ANSIBLE_DIR="ansible"        # Path to the Ansible directory
 INVENTORY_FILE="$ANSIBLE_DIR/inventory.ini" # Path to the Ansible inventory file
+IP_FILE="$ANSIBLE_DIR/.ip"
 SSH_KEY_PATH=".ssh/id_rsa"
 
 # Function to check for errors
@@ -36,6 +37,15 @@ if [ -f "$INVENTORY_FILE" ]; then
 else
   echo "No inventory file found. Skipping..."
 fi
+
+if [ -f "$IP_FILE" ]; then
+  rm -f "$IP_FILE"
+  echo "Removed IP file: $IP_FILE"
+else
+  echo "No IP file found. Skipping..."
+fi
+
+
 
 # Optionally remove Terraform state files
 if [ -d "$TERRAFORM_DIR" ]; then

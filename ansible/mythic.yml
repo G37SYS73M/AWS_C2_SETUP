@@ -6,24 +6,23 @@
       apt:
         update_cache: yes
         name:
-          - docker.io
-          - docker-compose
           - make
         state: present
-
-    - name: Add the current user to the Docker group
-      command: usermod -aG docker ubuntu
 
     - name: Clone the Mythic repository
       shell: |
         cd /opt/
         sudo git clone https://github.com/its-a-feature/Mythic --depth 1
 
-    - name: Install Docker  and Building Mythic-CLI
+    - name: Install Docker  and Starting
       shell: |
         cd /opt/Mythic
         sudo ./install_docker_ubuntu.sh
         sudo systemctl start docker
+
+    - name: Install and Building Mythic-CLI
+      shell: |
+        cd /opt/Mythic
         sudo make
 
     - name: Install Mythic Agents and Profiles (Default)
@@ -35,5 +34,5 @@
 
     - name: Start Mythic services
       shell: |
-        cd /opt/mythic
+        cd /opt/Mythic
         sudo ./mythic-cli start

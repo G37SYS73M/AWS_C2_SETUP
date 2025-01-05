@@ -45,7 +45,7 @@ resource "aws_security_group" "mythic_sg" {
 # Create an EC2 Instance
 resource "aws_instance" "mythic_instance" {
   ami           = "ami-053b12d3152c0cc71" #replace with your region-specific AMI
-  instance_type = "t2.large"
+  instance_type = "t2.medium"
   key_name      = aws_key_pair.my_key.key_name
   security_groups = [aws_security_group.mythic_sg.name]
 

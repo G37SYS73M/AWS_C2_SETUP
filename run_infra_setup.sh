@@ -42,17 +42,10 @@ PUBLIC_IP=$(terraform output -raw mythic_instance_public_ip)
 check_error "Extracting IP"
 
 echo "[mythic]" > "../$INVENTORY_FILE"
-echo "$PUBLIC_IP ansible_user=ubuntu ansible_ssh_private_key_file=../$SSH_KEY_PATH" >> "../$INVENTORY_FILE"
+echo "$PUBLIC_IP ansible_user=ubuntu ansible_ssh_private_key_file=$SSH_KEY_PATH" >> "../$INVENTORY_FILE"
 check_error "Writing inventory file"
+echo "$PUBLIC_IP" > ansible/.ip
 echo "Inventory file created successfully!"
-
-# Step 4: Run Ansible
-cd ".." || exit
-echo "Running Ansible playbook..."
-ansible-playbook -i "$INVENTORY_FILE" "$ANSIBLE_PLAYBOOK"
-check_error "Ansible playbook"
-
-echo "Ansible completed successfully! The setup is done."
 
 # Exit script
 exit 0
